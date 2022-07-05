@@ -9,13 +9,15 @@ function App() {
     { name: "tercera tarea", done: false },
   ]);
 
-  function crearTarea() {
-    alert("hola")
+  function crearTarea(tarea) {
+    if (!taskItems.find((task) => task.name === tarea)) {
+      setTaskItems([...taskItems, { name: tarea, done: false }]);
+    }
   }
 
   return (
     <div className="App">
-      <CrearTarea crearTarea={crearTarea}/>
+      <CrearTarea crearTarea={crearTarea} />
 
       <table>
         <thead>

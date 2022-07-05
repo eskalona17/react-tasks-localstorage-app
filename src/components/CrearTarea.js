@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
 
-function CrearTarea(props) {
+function CrearTarea({crearTarea}) {
   const [newTaskName, setNewTaskName] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.crearTarea()
+    crearTarea(newTaskName)
     localStorage.setItem("tasks", newTaskName);
     setNewTaskName("");
   };
