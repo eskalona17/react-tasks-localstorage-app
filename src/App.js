@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import CrearTarea from "./components/CrearTarea";
 
 function App() {
+  const [taskItems, setTaskItems] = useState([
+    { name: "primera tarea", done: false },
+    { name: "segunda tarea", done: false },
+    { name: "tercera tarea", done: false },
+  ]);
+
+  function crearTarea() {
+    alert("hola")
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CrearTarea crearTarea={crearTarea}/>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Tasks</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {taskItems.map((task) => {
+            return (
+              <tr key={task.name}>
+                <td>{task.name}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }
