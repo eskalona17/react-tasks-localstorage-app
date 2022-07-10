@@ -1,19 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import CrearTarea from "./components/CrearTarea";
 
 function App() {
-  const [taskItems, setTaskItems] = useState([
-    { name: "primera tarea", done: false },
-    { name: "segunda tarea", done: false },
-    { name: "tercera tarea", done: false },
-  ]);
+  const [taskItems, setTaskItems] = useState([]);
 
   function crearTarea(tarea) {
     if (!taskItems.find((task) => task.name === tarea)) {
       setTaskItems([...taskItems, { name: tarea, done: false }]);
     }
   }
+
+  useEffect(() => {
+    let data = localStorage.getItem("tareas");
+    if (data) {
+      setTaskItems(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tareas", JSON.stringify(taskItems));
+  }, [taskItems]);
 
   return (
     <div className="App">

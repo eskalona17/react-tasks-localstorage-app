@@ -7,10 +7,9 @@ function CrearTarea({crearTarea}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     crearTarea(newTaskName)
-    localStorage.setItem("tasks", newTaskName);
     setNewTaskName("");
   };
-
+  
   return (
     <form onSubmit={handleSubmit}>
       <input
